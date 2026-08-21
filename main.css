@@ -1,7 +1,221 @@
 h1 {
   font-size: 40px;
   font-family: Arial;
+:root {
+    --deakin-blue: #030c20;
+    --deakin-blue-dark: #071d49;
+    --deakin-blue-light: #eaf1f7;
+    --deakin-red: #da50c5;
+    --deakin-red-dark: #ad3f9d;
+
+    --text-primary: #071d49;
+    --text-secondary: #4a4a4a;
+
+    --background: #f5f5f5;
+    --white: #ffffff;
+    --border: #d9d9d9;
+
+    --success-bg: #e7f5ec;
+    --success-text: #176534;
+
+    --container-width: 1180px;
+
+    --shadow-sm:
+        0 2px 8px rgba(7, 29, 73, 0.06);
+
+    --shadow-md:
+        0 8px 24px rgba(7, 29, 73, 0.08);
 }
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    margin: 0;
+
+    background: var(--background);
+    color: var(--text-primary);
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+a {
+    color: inherit;
+}
+
+
+.container {
+    width: min(
+        calc(100% - 40px),
+        var(--container-width)
+    );
+
+    margin: 0 auto;
+}
+
+
+/* Accessibility */
+
+.sr-only {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+
+    border: 0;
+}
+
+
+:focus-visible {
+    outline: 3px solid var(--deakin-red);
+    outline-offset: 3px;
+}
+
+
+/* Header */
+
+.site-header {
+    background: var(--deakin-blue);
+
+    color: var(--white);
+
+    border-bottom: 4px solid var(--deakin-red);
+}
+
+
+.header-inner {
+    width: min(
+        calc(100% - 40px),
+        var(--container-width)
+    );
+
+    min-height: 86px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+/* Logo */
+
+.brand {
+    display: inline-flex;
+
+    align-items: center;
+
+    text-decoration: none;
+}
+
+
+.logo {
+    display: block;
+
+    width: auto;
+
+    height: 58px;
+
+    max-width: 260px;
+
+    object-fit: contain;
+}
+
+
+/* Development label */
+
+.development-tag {
+    display: inline-flex;
+
+    align-items: center;
+
+    min-height: 32px;
+
+    padding: 6px 12px;
+
+    background:
+        rgba(255, 255, 255, 0.1);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.35);
+
+    border-radius: 0px;
+
+    color: var(--white);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+
+/* Page introduction */
+
+.page-intro {
+    padding: 64px 0 56px;
+
+    background: var(--deakin-blue-light);
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.eyebrow {
+    margin: 0 0 8px;
+
+    color: var(--deakin-red);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+}
+
+
+h1,
 h2 {
   font-size: 25px;
   font-family: Arial;
@@ -17,4 +231,496 @@ p {
 div {
   background-color: darkcyan;
   text-align: right;
+}
+    color: var(--deakin-blue);
+
+    line-height: 1.2;
+}
+
+
+h1 {
+    margin: 0 0 16px;
+
+    font-size:
+        clamp(34px, 5vw, 48px);
+
+    letter-spacing: -0.025em;
+}
+
+
+.intro-text {
+    max-width: 700px;
+
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 18px;
+}
+
+
+/* Unit section */
+
+.unit-section {
+    padding: 56px 0 64px;
+}
+
+
+.section-heading {
+    margin-bottom: 24px;
+}
+
+
+.section-heading h2 {
+    margin: 0;
+
+    font-size: 30px;
+}
+
+
+/* Table */
+
+.table-wrapper {
+    overflow-x: auto;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 2px;
+
+    box-shadow: var(--shadow-sm);
+
+    -webkit-overflow-scrolling: touch;
+}
+
+
+table {
+    width: 100%;
+
+    min-width: 980px;
+
+    border-collapse: collapse;
+
+    text-align: left;
+}
+
+
+thead {
+    background: var(--deakin-blue);
+
+    color: var(--white);
+}
+
+
+th,
+td {
+    padding: 17px 16px;
+
+    border-bottom: 1px solid var(--border);
+
+    vertical-align: top;
+}
+
+
+thead th {
+    font-size: 13px;
+
+    font-weight: 750;
+}
+
+
+tbody th {
+    color: var(--deakin-blue);
+
+    font-weight: 750;
+
+    white-space: nowrap;
+}
+
+
+tbody td {
+    color: var(--text-secondary);
+
+    font-size: 14px;
+}
+
+
+tbody tr:nth-child(even) {
+    background: var(--deakin-blue-light);
+}
+
+
+tbody tr {
+    cursor: pointer;
+}
+
+
+tbody tr:hover,
+tbody tr:focus {
+    background: var(--deakin-blue-light);
+}
+
+
+tbody tr:last-child th,
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+
+/* Status */
+
+.status {
+    display: inline-flex;
+
+    padding: 4px 10px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+
+    font-weight: 750;
+
+    white-space: nowrap;
+}
+
+
+.status-active {
+    background: var(--success-bg);
+
+    color: var(--success-text);
+}
+
+
+/* Loading/Error */
+
+.loading,
+.error-message {
+    padding: 32px;
+
+    text-align: center;
+
+    color: var(--text-secondary);
+}
+
+
+.error-message {
+    color: var(--deakin-red-dark);
+}
+
+
+/* Selected unit */
+
+.unit-detail-section {
+    padding: 0 0 72px;
+}
+
+
+.unit-card {
+    position: relative;
+
+    overflow: hidden;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 3px;
+
+    box-shadow: var(--shadow-md);
+}
+
+
+.unit-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 6px;
+
+    background: var(--deakin-red);
+}
+
+
+.unit-card-content {
+    padding: 40px 44px 44px;
+}
+
+
+.unit-card h2 {
+    margin: 0 0 18px;
+
+    font-size:
+        clamp(26px, 4vw, 34px);
+}
+
+
+.unit-description {
+    max-width: 850px;
+
+    margin: 0 0 28px;
+
+    color: var(--text-secondary);
+
+    font-size: 17px;
+}
+
+
+.unit-card-content > p:not(.eyebrow):not(.unit-description) {
+    max-width: 850px;
+
+    margin-bottom: 28px;
+
+    color: var(--text-secondary);
+}
+
+
+/* Unit metadata */
+
+.unit-meta {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(140px, 1fr));
+
+    gap: 1px;
+
+    margin-bottom: 28px;
+
+    background: var(--border);
+
+    border: 1px solid var(--border);
+}
+
+
+.unit-meta > div {
+    min-height: 88px;
+
+    padding: 16px 18px;
+
+    background: var(--deakin-blue-light);
+}
+
+
+.meta-label {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.05em;
+
+    text-transform: uppercase;
+}
+
+
+.unit-meta strong {
+    color: var(--deakin-blue);
+
+    font-size: 15px;
+}
+
+
+/* Button */
+
+.cta-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    min-height: 48px;
+
+    padding: 12px 20px;
+
+    background: var(--deakin-red);
+
+    border: 2px solid var(--deakin-red);
+
+    border-radius: 3px;
+
+    color: var(--white);
+
+    font-size: 15px;
+
+    font-weight: 750;
+
+    text-decoration: none;
+
+    transition:
+        background-color 150ms ease,
+        transform 150ms ease;
+}
+
+
+.cta-button:hover {
+    background: var(--deakin-red-dark);
+
+    transform: translateY(-1px);
+}
+
+
+.cta-button span {
+    font-size: 20px;
+}
+
+
+/* Footer */
+
+.site-footer {
+    padding: 28px 0;
+
+    background: var(--deakin-blue-dark);
+
+    color: var(--deakin-blue-light);
+}
+
+
+.site-footer p {
+    margin: 0;
+
+    font-size: 13px;
+}
+
+
+/* Tablet */
+
+@media (max-width: 800px) {
+
+    .header-inner {
+        min-height: auto;
+
+        padding: 16px 0;
+    }
+
+
+    .logo {
+        height: 50px;
+
+        max-width: 220px;
+    }
+
+
+    .page-intro {
+        padding: 48px 0 44px;
+    }
+
+
+    .unit-meta {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 560px) {
+
+    .container,
+    .header-inner {
+        width: min(
+            calc(100% - 28px),
+            var(--container-width)
+        );
+    }
+
+
+    .header-inner {
+        align-items: flex-start;
+
+        gap: 14px;
+    }
+
+
+    .logo {
+        height: 44px;
+
+        max-width: 190px;
+    }
+
+
+    .development-tag {
+        align-self: flex-start;
+
+        font-size: 10px;
+    }
+
+
+    .page-intro {
+        padding: 40px 0 36px;
+    }
+
+
+    h1 {
+        font-size: 34px;
+    }
+
+
+    .intro-text {
+        font-size: 16px;
+    }
+
+
+    .unit-section {
+        padding: 40px 0 48px;
+    }
+
+
+    .section-heading h2 {
+        font-size: 26px;
+    }
+
+
+    .unit-card-content {
+        padding: 32px 24px;
+    }
+
+
+    .unit-card h2 {
+        font-size: 25px;
+    }
+
+
+    .unit-description {
+        font-size: 16px;
+    }
+
+
+    .cta-button {
+        width: 100%;
+    }
+
+
+    .unit-detail-section {
+        padding-bottom: 48px;
+    }
+}
+
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+    }
 }

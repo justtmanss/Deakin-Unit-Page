@@ -1,15 +1,406 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title> Home </title>
-<link rel="stylesheet" type="text/css" media="screen" href="main.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Deakin University unit information prototype"
+    >
+
+    <title>Unit Information | Deakin University</title>
+
+    <link rel="stylesheet" href="main.css">
 </head>
 
-<div >
-  <img src="logo.svg" alt="Deakin" width="200" height="210" >
-</div>
-
 <body>
-<h1>SIT223-SIT753 - Professional Practice in IT</h1>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-inner">
+
+            <a href="#" class="brand" aria-label="Deakin University">
+                <img
+                    src="logo.webp"
+                    alt="Deakin University"
+                    class="logo"
+                >
+            </a>
+
+            <span class="development-tag">
+                Site in Development
+            </span>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- Page introduction -->
+        <section class="page-intro">
+            <div class="container">
+
+                <p class="eyebrow">
+                    Student Learning
+                </p>
+
+                <h1>
+                    Unit Information
+                </h1>
+
+                <p class="intro-text">
+                    Explore key information about university units,
+                    including study mode, trimester and credit points.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- Unit table -->
+        <section
+            class="unit-section"
+            aria-labelledby="unit-table-title"
+        >
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="eyebrow">
+                            Unit Information
+                        </p>
+
+                        <h2 id="unit-table-title">
+                            Available Units
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <caption class="sr-only">
+                            Available university units and their details
+                        </caption>
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Unit Code</th>
+                                <th scope="col">Unit Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Credit Points</th>
+                                <th scope="col">Trimester</th>
+                                <th scope="col">Study Mode</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="unit-table-body">
+
+                            <tr>
+                                <td
+                                    colspan="7"
+                                    class="loading"
+                                >
+                                    Loading unit information...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Selected unit -->
+        <section
+            class="unit-detail-section"
+            aria-labelledby="selected-unit-title"
+        >
+            <div class="container">
+
+                <article class="unit-card">
+
+                    <div class="unit-card-content">
+
+                        <p class="eyebrow">
+                            Selected Unit
+                        </p>
+
+                        <h2 id="selected-unit-title">
+                            Loading...
+                        </h2>
+
+                        <p
+                            id="selected-unit-description"
+                            class="unit-description"
+                        >
+                            Loading unit information...
+                        </p>
+
+
+                        <div
+                            class="unit-meta"
+                            aria-label="Unit information"
+                        >
+
+                            <div>
+                                <span class="meta-label">
+                                    Credit Points
+                                </span>
+
+                                <strong id="selected-credit-points">
+                                    —
+                                </strong>
+                            </div>
+
+
+                            <div>
+                                <span class="meta-label">
+                                    Study Mode
+                                </span>
+
+                                <strong id="selected-study-mode">
+                                    —
+                                </strong>
+                            </div>
+
+
+                            <div>
+                                <span class="meta-label">
+                                    Trimester
+                                </span>
+
+                                <strong id="selected-trimester">
+                                    —
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <p id="selected-unit-content">
+                            Loading unit information...
+                        </p>
+
+
+                        <a
+                            id="unit-details-link"
+                            class="cta-button"
+                            href="#"
+                        >
+                            View Unit Details
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer class="site-footer">
+        <div class="container">
+
+            <p>
+                Deakin University · Unit Information Prototype
+            </p>
+
+        </div>
+    </footer>
+
+
+    <script>
+        const tableBody =
+            document.getElementById("unit-table-body");
+
+        const selectedTitle =
+            document.getElementById("selected-unit-title");
+
+        const selectedDescription =
+            document.getElementById("selected-unit-description");
+
+        const selectedCreditPoints =
+            document.getElementById("selected-credit-points");
+
+        const selectedStudyMode =
+            document.getElementById("selected-study-mode");
+
+        const selectedTrimester =
+            document.getElementById("selected-trimester");
+
+        const selectedContent =
+            document.getElementById("selected-unit-content");
+
+        const unitDetailsLink =
+            document.getElementById("unit-details-link");
+
+
+        async function loadUnits() {
+
+            try {
+
+                const response = await fetch("units.json");
+
+                if (!response.ok) {
+                    throw new Error("Could not load units.json");
+                }
+
+                const data = await response.json();
+
+                renderUnits(data.units);
+
+                if (data.units.length > 0) {
+                    displaySelectedUnit(data.units[0]);
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                const isLocalFile =
+                    window.location.protocol === "file:";
+
+                const errorText = isLocalFile
+                    ? "Open this page through a local web server so units.json can be loaded."
+                    : "Unit information could not be loaded. Please check that units.json is available.";
+
+                tableBody.innerHTML = `
+                    <tr>
+                        <td
+                            colspan="7"
+                            class="error-message"
+                        >
+                            ${errorText}
+                        </td>
+                    </tr>
+                `;
+
+                selectedTitle.textContent =
+                    "Unit information unavailable";
+
+                selectedDescription.textContent =
+                    errorText;
+
+            }
+
+        }
+
+
+        function renderUnits(units) {
+
+            tableBody.innerHTML = "";
+
+            units.forEach((unit) => {
+
+                const row =
+                    document.createElement("tr");
+
+                row.tabIndex = 0;
+
+                row.innerHTML = `
+                    <th scope="row">
+                        ${unit.code}
+                    </th>
+
+                    <td>
+                        ${unit.name}
+                    </td>
+
+                    <td>
+                        ${unit.description}
+                    </td>
+
+                    <td>
+                        ${unit.creditPoints}
+                    </td>
+
+                    <td>
+                        ${unit.trimester}
+                    </td>
+
+                    <td>
+                        ${unit.studyMode}
+                    </td>
+
+                    <td>
+                        <span class="status status-active">
+                            ${unit.status}
+                        </span>
+                    </td>
+                `;
+
+
+                row.addEventListener("click", () => {
+                    displaySelectedUnit(unit);
+                });
+
+
+                row.addEventListener("keydown", (event) => {
+
+                    if (
+                        event.key === "Enter" ||
+                        event.key === " "
+                    ) {
+
+                        event.preventDefault();
+
+                        displaySelectedUnit(unit);
+
+                    }
+
+                });
+
+
+                tableBody.appendChild(row);
+
+            });
+
+        }
+
+
+        function displaySelectedUnit(unit) {
+
+            selectedTitle.textContent =
+                `${unit.code} — ${unit.name}`;
+
+            selectedDescription.textContent =
+                unit.description;
+
+            selectedCreditPoints.textContent =
+                unit.creditPoints;
+
+            selectedStudyMode.textContent =
+                unit.studyMode;
+
+            selectedTrimester.textContent =
+                unit.trimester;
+
+            selectedContent.textContent =
+                unit.content;
+
+            unitDetailsLink.href =
+                unit.detailsUrl;
+
+        }
+
+
+        loadUnits();
+    </script>
+
 </body>
 </html>
