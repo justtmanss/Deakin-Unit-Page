@@ -2,9 +2,66 @@
 <html>
 <head>
 <title> Home </title>
-<link rel="stylesheet" type="text/css" media="screen" href="main.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="main.css">
 </head>
 <body>
-<h1>SIT223-SIT753 - Professional Practice in IT</h1>
+
+  <!-- ===================== HEADER (US1 — Aryan) ===================== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+
+      <a href="index.html" class="site-header__brand" aria-label="Deakin University home">
+        <span class="site-header__logo-mark" aria-hidden="true">D</span>
+        <span class="site-header__logo-text">Deakin&nbsp;University</span>
+      </a>
+
+      <button class="site-header__toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-header__nav" id="siteNav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="#unit-details">Unit Details</a></li>
+          <li><a href="#unit-content">Unit Content</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+  <!-- =================== END HEADER =================== -->
+
+  <main>
+
+    <h1>SIT223-SIT753 - Professional Practice in IT</h1>
+
+    <!-- ===================== UNIT DETAILS TABLE (US2 — Nakul) ===================== -->
+    <section id="unit-details" class="unit-details">
+      <!-- Nakul: unit details table implementation goes here -->
+    </section>
+    <!-- =================== END UNIT DETAILS TABLE =================== -->
+
+    <!-- ===================== UNIT CONTENT (US3 — Manasvi) ===================== -->
+    <section id="unit-content" class="unit-content">
+      <!-- Manasvi: unit content + hyperlink section goes here -->
+    </section>
+    <!-- =================== END UNIT CONTENT =================== -->
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Deakin University. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const siteNav = document.getElementById('siteNav');
+    navToggle.addEventListener('click', () => {
+      const isOpen = siteNav.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+  </script>
+
 </body>
 </html>
