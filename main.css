@@ -1,3 +1,6 @@
+h1 {
+  font-size: 40px;
+  font-family: Arial;
 :root {
     --deakin-blue: #030c20;
     --deakin-blue-dark: #071d49;
@@ -214,6 +217,21 @@ a {
 
 h1,
 h2 {
+  font-size: 25px;
+  font-family: Arial;
+}
+h3 {
+  font-family: Arial;
+}
+p {
+  font-size: 14px;
+  font-family: Arial;
+}
+
+div {
+  background-color: darkcyan;
+  text-align: right;
+}
     color: var(--deakin-blue);
 
     line-height: 1.2;
